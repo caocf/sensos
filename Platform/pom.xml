@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>fi.sensos</groupId>
+    <artifactId>Platform</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Platform</name>
+ 
+    <modules>
+        <module>../Platform-Business-Domain-Model</module>
+        <module>../Platform-Authentication-BDM</module>
+        <module>../Platform-Authentication</module>
+        <module>../Platform-Backend-Dal</module>
+        <module>../Platform-Utilities</module>
+        <module>../Platform-Backend-BP</module>
+        <module>../Platform-Web</module>
+        <module>../Platform-Web-Authentication</module>
+        <module>../Platform-Web-Shared</module>
+        <module>../Platform-Dock</module>
+        <module>../Platform-EAR</module>
+        
+    </modules>
+  
+</project>
