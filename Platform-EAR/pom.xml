@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>Platform</artifactId>
+		<groupId>fi.sensos</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>Platform-EAR</artifactId>
+	<packaging>ear</packaging>
+
+	<name>Platform-EAR</name>
+
+	<repositories>
+		<repository>
+			<id>apache-m2-snapshot</id>
+			<name>Apache Snapshot Repository</name>
+			<url>https://repository.apache.org/content/groups/snapshots</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+
+			<!-- Compiler -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- EAR-Builder -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- Tomee plugin -->
+
+			<plugin>
+				<groupId>org.apache.openejb.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<version>${tomee-version}</version>
+				<configuration>
+
+					<tomeeVersion>${tomee-version}</tomeeVersion>
+					<tomeeClassifier>plus</tomeeClassifier>
+					<path>${tomee-path}</path>
+					<deployOpenEjbApplication>true</deployOpenEjbApplication>
+
+					<!-- Auto-synchronization -->
+
+					<synchronization>
+						<extensions>
+							<extension>.class</extension>
+							<extension>.jsp</extension>
+						</extensions>
+					</synchronization>
+					<reloadOnUpdate>true</reloadOnUpdate>
+
+					<!-- Debug properties and JMX-Management -->
+
+					<debugPort>${tomee-jdpa-port}</debugPort>
+
+					<args>${tomee-args}</args>
+
+					<libs>
+						<lib>org.postgresql:postgresql:9.3-1102-jdbc41</lib>
+						<!-- <lib>fi.sensos:Platform-Authentication:1.0-SNAPSHOT</lib> <lib>fi.sensos:Platform-Authentication-BDM:1.0-SNAPSHOT</lib> 
+							<lib>org.apache.activemq:activemq-spring:5.10.0</lib> -->
+						<lib>org.apache.activemq:activemq-mqtt:5.10.0</lib>
+						<lib>org.fusesource.mqtt-client:mqtt-client:1.10</lib>
+						<lib>org.fusesource.stompjms:stompjms-client:1.19</lib>
+						<!-- <lib>org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1</lib> -->
+						<lib>org.apache.activemq:activemq-all:5.10.0</lib>
+						<lib>org.eclipse.jetty:jetty-server:7.6.9.v20130131</lib>
+						<lib>org.eclipse.jetty:jetty-servlet:7.6.9.v20130131</lib>
+						<lib>org.eclipse.jetty:jetty-websocket:7.6.9.v20130131</lib>
+						<lib>org.eclipse.jetty:jetty-util:7.6.8.v20121106</lib>
+						<lib>org.eclipse.jetty:jetty-http:7.6.8.v20121106</lib>
+						<lib>org.eclipse.jetty:jetty-io:7.6.8.v20121106</lib>
+						<lib>org.eclipse.jetty:jetty-security:7.6.8.v20121106</lib>
+						<lib>org.eclipse.jetty:jetty-continuation:7.6.9.v20130131</lib>
+					</libs>
+
+					<webapps>
+						<webapp>fi.sensos:Platform-Dock:1.0-SNAPSHOT:war</webapp>
+					</webapps>
+
+				</configuration>
+
+			</plugin>
+
+			<!-- Use this if you are driving Tomcat from Eclipse 
+
+			<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<version>2.10</version> <executions> <execution> <id>copy</id> <phase>package</phase> 
+				<goals> <goal>copy</goal> </goals> <configuration> <artifactItems> <artifactItem> 
+				<groupId>org.eclipse.paho</groupId> <artifactId>mqtt-client</artifactId> 
+				<version>0.4.0</version> </artifactItem> <artifactItem> <groupId>org.fusesource.mqtt-client</groupId> 
+				<artifactId>mqtt-client</artifactId> <version>1.10</version> </artifactItem> 
+				<artifactItem> <groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> 
+				<version>9.3-1102-jdbc41</version> </artifactItem> <artifactItem> <groupId>org.fusesource.stompjms</groupId> 
+				<artifactId>stompjms-client</artifactId> <version>1.19</version> </artifactItem> 
+				<artifactItem> <groupId>org.apache.activemq</groupId> <artifactId>activemq-all</artifactId> 
+				<version>5.10.0</version> </artifactItem> </artifactItems> <outputDirectory>/home/sensos/project/Sensos-Platform/ext/apache-tomee-plus-1.7.1/lib</outputDirectory> 
+				</configuration> </execution> </executions> </plugin> -->
+
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<!-- Main projects -->
+		<!-- <dependency> <groupId>fi.sensos</groupId> <artifactId>Platform-Web</artifactId> 
+			<version>1.0-SNAPSHOT</version> <type>war</type> </dependency> <dependency> 
+			<groupId>fi.sensos</groupId> <artifactId>Platform-Web-Authentication</artifactId> 
+			<version>1.0-SNAPSHOT</version> <type>war</type> </dependency> <dependency> 
+			<groupId>fi.sensos</groupId> <artifactId>Platform-Web-Shared</artifactId> 
+			<version>1.0-SNAPSHOT</version> <type>war</type> </dependency> -->
+
+		<dependency>
+			<groupId>fi.sensos</groupId>
+			<artifactId>Platform-Dock</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>war</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Other libraries shared between projects -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>Platform-Contract</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fi.sensos</groupId>
+			<artifactId>Platform-Backend-Dal</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>fi.sensos</groupId>
+			<artifactId>Platform-Authentication-BDM</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Jetty files for websocket enablement -->
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>7.6.9.v20130131</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>7.6.9.v20130131</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-websocket</artifactId>
+			<version>7.6.9.v20130131</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-util</artifactId>
+			<version>7.6.8.v20121106</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-http</artifactId>
+			<version>7.6.8.v20121106</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-io</artifactId>
+			<version>7.6.8.v20121106</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-security</artifactId>
+			<version>7.6.8.v20121106</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-continuation</artifactId>
+			<version>7.6.9.v20130131</version>
+		</dependency>
+
+	</dependencies>
+
+</project>
