@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+
+    <groupId>fi.sensos</groupId>
+    <artifactId>Platform-Dock</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>Platform-Dock</name>
+
+    <repositories>
+        <repository>
+            <id>Paho</id>
+            <name>paho-release</name>
+            <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <endorsed.dir>${projecgt.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Platform-Utilities</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Camel <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-core</artifactId> 
+        <version>2.14.1</version> </dependency> <dependency> <groupId>org.apache.camel</groupId> 
+        <artifactId>camel-cdi</artifactId> <version>2.14.1</version> <type>jar</type> 
+        </dependency> <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-servlet</artifactId> 
+        <version>2.14.1</version> </dependency> <dependency> <groupId>org.apache.camel</groupId> 
+        <artifactId>camel-swagger</artifactId> <version>2.14.1</version> </dependency> 
+        <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-spring</artifactId> 
+        <version>2.14.1</version> </dependency> -->
+
+        <!-- ActiveMQ -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.10.0</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- MQTT-Clients -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>mqtt-client</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fusesource.mqtt-client</groupId>
+            <artifactId>mqtt-client</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fusesource.stompjms</groupId>
+            <artifactId>stompjms-client</artifactId>
+            <version>1.19</version>
+        </dependency>
+
+        <!-- Other projects -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Platform-Contract</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Platform-Backend-Dal</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Jave-EE API -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.0-rc1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${ee.version}</version>
+            <scope>provided</scope>
+            <type>jar</type>
+        </dependency>
+
+        <!-- For testing purposes -->
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>arquillian-tomee-embedded</artifactId>
+            <version>${tomee.version}</version> <!--Current version -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>tomee-embedded</artifactId>
+            <version>${tomee.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>tomee-webservices</artifactId>
+            <version>${tomee.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>tomee-jaxrs</artifactId>
+            <version>${tomee.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>el-impl</artifactId>
+            <version>2.2.1-b05</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Apache Commons.io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+        	<groupId>fi.sensos</groupId>
+        	<artifactId>Platform-Authentication</artifactId>
+        	<version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.4.2</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <systemPropertyVariables>
+                        <tomee.classifier>${tomee-classifier}</tomee.classifier>
+                        <tomee.version>${tomee.version}</tomee.version>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <!-- Compile -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!-- Package -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- Copy -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>7.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Tomee plugin START -->
+
+            <plugin>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${tomee.version}</version>
+                <configuration>
+
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>plus</tomeeClassifier>
+                    <path>${tomee.path}</path>
+                    <deployOpenEjbApplication>true</deployOpenEjbApplication>
+
+                    <!-- Auto-synchronization -->
+
+                    <synchronization>					
+                        <extensions>
+                            <extension>.class</extension>
+                            <extension>.jsp</extension>
+                            <extension>.html</extension>
+                        </extensions>
+                    </synchronization>
+                    <reloadOnUpdate>true</reloadOnUpdate>
+
+                    <!-- Debug properties and JMX-Management -->
+
+                    <debugPort>${tomee.jdpa.port}</debugPort>
+
+                    <args>${tomee.args}</args>
+
+                    <libs>
+                        <lib>org.postgresql:postgresql:9.3-1102-jdbc41</lib>
+                        <lib>hsqldb:hsqldb:1.8.0.10</lib>
+                        <lib>org.apache.activemq:activemq-mqtt:5.10.0</lib>
+                        <lib>org.fusesource.mqtt-client:mqtt-client:1.10</lib>
+                        <lib>org.fusesource.stompjms:stompjms-client:1.19</lib>
+                        <lib>org.apache.activemq:activemq-all:5.10.0</lib>
+                        <lib>org.eclipse.jetty:jetty-server:7.6.9.v20130131</lib>
+                        <lib>org.eclipse.jetty:jetty-servlet:7.6.9.v20130131</lib>
+                        <lib>org.eclipse.jetty:jetty-websocket:7.6.9.v20130131</lib>
+                        <lib>org.eclipse.jetty:jetty-util:7.6.8.v20121106</lib>
+                        <lib>org.eclipse.jetty:jetty-http:7.6.8.v20121106</lib>
+                        <lib>org.eclipse.jetty:jetty-io:7.6.8.v20121106</lib>
+                        <lib>org.eclipse.jetty:jetty-security:7.6.8.v20121106</lib>
+                        <lib>org.eclipse.jetty:jetty-continuation:7.6.9.v20130131</lib>
+                    </libs>
+
+                </configuration>
+
+            </plugin>
+
+            <!-- Tomee plugin END -->
+
+
+            <plugin>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>1.7.1</version>
+                <configuration>
+                    <synchronization>
+                        <extensions>
+                            <extension>.class</extension> <!-- if you want to update each time you build with mvn compile -->
+                            <extension>.html</extension> <!-- if you want to update each time you build with mvn compile -->
+                        </extensions>
+                    </synchronization>
+                    <reloadOnUpdate>true</reloadOnUpdate>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
