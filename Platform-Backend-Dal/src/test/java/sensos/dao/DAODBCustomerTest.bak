@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sensos.dao;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.logging.Logger;
+
+import org.junit.After;
+import org.junit.AfterClass;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import sensos.bo.om.Customer;
+import sensos.bo.om.CustomerContact;
+import sensos.dal.DALDBFactoryType;
+import sensos.dal.billing.DALDBFactoryBilling;
+import sensos.dal.billing.DAODBCustomer;
+
+/**
+ *
+ * @author sensos
+ */
+public class DAODBCustomerTest {
+
+    Logger logger = Logger.getLogger(DAODBCustomer.class.getName());
+
+    DALDBFactoryBilling daoFactory;
+    DAODBCustomer daoCustomer;
+
+    public DAODBCustomerTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+
+        daoFactory = new DALDBFactoryBilling(DALDBFactoryType.PlatformBillingTest);
+        daoCustomer = daoFactory.getDAOCustomer();
+
+    }
+
+    @After
+    public void tearDown() {
+        
+    }
+
+    @Test
+    public void testCustomerLifecycle() {
+    
+        String uuid = UUID.randomUUID().toString();
+        
+        String username = "vrajakan"+uuid;
+        
+        Customer customer = new Customer(username);
+        
+        daoCustomer.store(customer);
+       
+        customer = daoCustomer.getCustomer(customer);
+        
+        assertTrue(customer != null);
+        
+        testCustomerContactLifecycle(username);
+    
+    }
+
+    
+    private void testCustomerContactLifecycle(String username) {
+
+        Customer platformCustomer = new Customer(username);
+
+        
+        List<CustomerContact> platformCustomerContacts = new ArrayList<CustomerContact>() {};
+        CustomerContact platformCustomerContact = new CustomerContact();
+        
+        Customer customer = daoCustomer.getCustomer(platformCustomer);
+        
+        platformCustomerContact.setCity("Helsinki");
+        platformCustomerContact.setCountryCode("FI");
+        platformCustomerContact.setCreated(new Date());
+        platformCustomerContact.setEmail("test@test.com");
+        platformCustomerContact.setFirstName("Teppo");
+        platformCustomerContact.setLastName("Testman");
+        platformCustomerContact.setId(null);
+        platformCustomerContact.setUserId(customer.getCustomerId());
+
+        daoCustomer.store(platformCustomerContact);
+        
+        platformCustomerContacts = daoCustomer.getCustomerContact(customer);
+
+        assertTrue(platformCustomerContacts != null);
+        
+    }
+
+}

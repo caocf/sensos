@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
+    <persistence-unit name="platform" transaction-type="RESOURCE_LOCAL">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <jta-data-source>Sensos-Platform</jta-data-source>
+        <class>sensos.bo.app.Application</class>
+        <class>sensos.bo.device.Device</class>
+        <class>sensos.bo.mediator.BillableUnit</class>
+        <class>sensos.bo.social.Content</class>
+        <class>sensos.bo.social.ContentPermission</class>
+        <class>sensos.bo.social.ExternalToken</class>
+        <class>sensos.bo.social.Field</class>
+        <class>sensos.bo.social.Group</class>
+        <class>sensos.bo.social.GroupPermission</class>
+        <class>sensos.bo.social.Member</class>
+        <class>sensos.bo.social.OnlineAccount</class>
+        <class>sensos.bo.social.TypePermission</class>
+        <class>sensos.bo.social.UserPermission</class>
+        <class>sensos.bo.user.PlatformUser</class>
+        <class>sensos.bo.user.PlatformUserAttribute</class>
+        <properties>
+            <!-- Postgres
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="openjpa.jdbc.DBDictionary" value="postgres"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="sensos-platform"/>
+            <property name="openjpa.ConnectionPassword" value="sens0s"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/sensos-platform" />
+            <property name="openjpa.Log" value="SQL=TRACE"/>
+            <property name="openjpa.Log" value="DefaultLevel=WARN, Tool=INFO"/> -->
+            
+            <!-- hsqldb -->
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:./sensos-platform;shutdown=true"/>
+            <property name="javax.persistence.jdbc.user" value="SA"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+        </properties>
+    </persistence-unit>
+    
+    <persistence-unit name="platform-billing" transaction-type="RESOURCE_LOCAL">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="openjpa.jdbc.DBDictionary" value="postgres"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="sensos-billing"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/sensos-billing" />
+            <property name="openjpa.ConnectionPassword" value="sens0s"/>
+            <property name="openjpa.Log" value="SQL=TRACE"/>
+            <property name="openjpa.Log" value="DefaultLevel=WARN, Tool=INFO"/>
+        </properties>
+    </persistence-unit>
+    
+</persistence>
