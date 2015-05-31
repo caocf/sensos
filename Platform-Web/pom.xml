@@ -65,15 +65,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>fi.sensos</groupId>
-            <artifactId>Platform-Authentication-BDM</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${ee.version}</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -109,7 +103,8 @@
                 </configuration>
 
             </plugin>
-                                    
+                             
+			<!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -135,6 +130,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
             
             <!-- openejb enricher -->
             <plugin>

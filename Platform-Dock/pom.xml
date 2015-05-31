@@ -35,9 +35,9 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>fi.sensos</groupId>
             <artifactId>Platform-Utilities</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- Camel <dependency> <groupId>org.apache.camel</groupId> <artifactId>camel-core</artifactId> 
@@ -100,7 +100,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${ee.version}</version>
+            <version>7.0</version>
             <scope>provided</scope>
             <type>jar</type>
         </dependency>
@@ -109,25 +109,25 @@
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>arquillian-tomee-embedded</artifactId>
-            <version>${tomee.version}</version> <!--Current version -->
+            <version>1.7.1</version> <!--Current version -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>tomee-embedded</artifactId>
-            <version>${tomee.version}</version>
+            <version>1.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>tomee-webservices</artifactId>
-            <version>${tomee.version}</version>
+            <version>1.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>tomee-jaxrs</artifactId>
-            <version>${tomee.version}</version>
+            <version>1.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -167,8 +167,8 @@
                 <configuration>
                     <skipTests>false</skipTests>
                     <systemPropertyVariables>
-                        <tomee.classifier>${tomee-classifier}</tomee.classifier>
-                        <tomee.version>${tomee.version}</tomee.version>
+                        <tomee.classifier>plus</tomee.classifier>
+                        <tomee.version>1.7.1</tomee.version>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -197,7 +197,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Copy -->
+            <!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -223,17 +223,17 @@
                     </execution>
                 </executions>
             </plugin>
-
+			-->
 
             <!-- Tomee plugin START -->
 
             <plugin>
                 <groupId>org.apache.openejb.maven</groupId>
                 <artifactId>tomee-maven-plugin</artifactId>
-                <version>${tomee.version}</version>
+                <version>1.7.1</version>
                 <configuration>
 
-                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeVersion>1.7.1</tomeeVersion>
                     <tomeeClassifier>plus</tomeeClassifier>
                     <path>${tomee.path}</path>
                     <deployOpenEjbApplication>true</deployOpenEjbApplication>

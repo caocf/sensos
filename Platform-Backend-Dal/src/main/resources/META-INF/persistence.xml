@@ -4,21 +4,7 @@
     <persistence-unit name="platform" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>Sensos-Platform</jta-data-source>
-        <class>sensos.bo.app.Application</class>
-        <class>sensos.bo.device.Device</class>
-        <class>sensos.bo.mediator.BillableUnit</class>
-        <class>sensos.bo.social.Content</class>
-        <class>sensos.bo.social.ContentPermission</class>
-        <class>sensos.bo.social.ExternalToken</class>
-        <class>sensos.bo.social.Field</class>
-        <class>sensos.bo.social.Group</class>
-        <class>sensos.bo.social.GroupPermission</class>
-        <class>sensos.bo.social.Member</class>
-        <class>sensos.bo.social.OnlineAccount</class>
-        <class>sensos.bo.social.TypePermission</class>
-        <class>sensos.bo.social.UserPermission</class>
-        <class>sensos.bo.user.PlatformUser</class>
-        <class>sensos.bo.user.PlatformUserAttribute</class>
+
         <properties>
             <!-- Postgres
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>

@@ -15,13 +15,13 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${ee.version}</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency> 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>fi.sensos</groupId>
             <artifactId>Platform-Business-Domain-Model</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

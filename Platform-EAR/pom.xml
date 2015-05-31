@@ -163,11 +163,6 @@
 			<artifactId>Platform-Backend-Dal</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>fi.sensos</groupId>
-			<artifactId>Platform-Authentication-BDM</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 
 		<!-- Jetty files for websocket enablement -->
 
