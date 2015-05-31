@@ -63,38 +63,39 @@
 			<plugin>
 				<groupId>org.apache.openejb.maven</groupId>
 				<artifactId>tomee-maven-plugin</artifactId>
-				<version>${tomee-version}</version>
+				<version>${tomee.version}</version>
 				<configuration>
 
-					<tomeeVersion>${tomee-version}</tomeeVersion>
+					<tomeeVersion>${tomee.version}</tomeeVersion>
 					<tomeeClassifier>plus</tomeeClassifier>
-					<path>${tomee-path}</path>
+					<path>${tomee.path}</path>
 					<deployOpenEjbApplication>true</deployOpenEjbApplication>
 
 					<!-- Auto-synchronization -->
 
 					<synchronization>
+					<resourcesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/src/main/webapp</resourcesDir>
+					<binariesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/target</binariesDir>
 						<extensions>
 							<extension>.class</extension>
 							<extension>.jsp</extension>
+							<extension>.html</extension>
 						</extensions>
 					</synchronization>
 					<reloadOnUpdate>true</reloadOnUpdate>
 
 					<!-- Debug properties and JMX-Management -->
 
-					<debugPort>${tomee-jdpa-port}</debugPort>
+					<debugPort>${tomee.jdpa.port}</debugPort>
 
-					<args>${tomee-args}</args>
+					<args>${tomee.args}</args>
 
 					<libs>
 						<lib>org.postgresql:postgresql:9.3-1102-jdbc41</lib>
-						<!-- <lib>fi.sensos:Platform-Authentication:1.0-SNAPSHOT</lib> <lib>fi.sensos:Platform-Authentication-BDM:1.0-SNAPSHOT</lib> 
-							<lib>org.apache.activemq:activemq-spring:5.10.0</lib> -->
+						<lib>hsqldb:hsqldb:1.8.0.10</lib>
 						<lib>org.apache.activemq:activemq-mqtt:5.10.0</lib>
 						<lib>org.fusesource.mqtt-client:mqtt-client:1.10</lib>
 						<lib>org.fusesource.stompjms:stompjms-client:1.19</lib>
-						<!-- <lib>org.apache.geronimo.specs:geronimo-jms_1.1_spec:1.1</lib> -->
 						<lib>org.apache.activemq:activemq-all:5.10.0</lib>
 						<lib>org.eclipse.jetty:jetty-server:7.6.9.v20130131</lib>
 						<lib>org.eclipse.jetty:jetty-servlet:7.6.9.v20130131</lib>

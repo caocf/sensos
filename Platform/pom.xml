@@ -7,21 +7,14 @@
     <packaging>pom</packaging>
     <name>Platform</name>
  
- 
- 
     <modules>
         <module>../Platform-Business-Domain-Model</module>
-        <module>../Platform-Authentication-BDM</module>
         <module>../Platform-Authentication</module>
         <module>../Platform-Backend-Dal</module>
         <module>../Platform-Utilities</module>
-        <module>../Platform-Backend-BP</module>
         <module>../Platform-Web</module>
-        <module>../Platform-Web-Authentication</module>
-        <module>../Platform-Web-Shared</module>
         <module>../Platform-Dock</module>
-        <module>../Platform-EAR</module>
-        
+        <module>../Platform-EAR</module>  
     </modules>
   
 </project>

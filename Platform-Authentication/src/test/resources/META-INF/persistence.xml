@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
+    <persistence-unit name="platform-auth-test" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>sensos.bo.auth.PrivateAccessKey</class>
+        <class>sensos.bo.auth.PublicAccessKey</class>
+
+        <properties>
+        
+            <!-- Postgres
+              <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sensos-platform-test"/>
+              <property name="javax.persistence.jdbc.password" value="sens0s"/>
+              <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+              <property name="javax.persistence.jdbc.user" value="sensos-platform"/>
+              <property name="eclipselink.target-database" value="PostgreSQL"/>
+              <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            -->
+    
+            <!-- hsqldb -->
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:./sensos-platform-test;shutdown=true"/>
+            <property name="javax.persistence.jdbc.user" value="SA"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="sql.enforce_size" value="false" />
+            <property name="sql.enforce_strict_size" value="false" />
+
+            <!-- common -->
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+        </properties> 
+
+    </persistence-unit>
+</persistence>

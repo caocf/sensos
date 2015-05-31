@@ -1,0 +1,66 @@
+/**
+ *  Sensos IoT Platform.
+ *  Copyright (C) 2015 sensos
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package sensos.authentication.user.normal;
+
+import java.util.logging.Level;
+import javax.security.auth.login.LoginException;
+
+/**
+ * Authenticates users.
+ * 
+ * This class is for test purposes.
+ * 
+ * Next create a second class that extends com.sun.appserv.security.AppservPasswordLoginModule. 
+ * Override the authenticateUser method. There are a few protected fields that are 
+ * useful from this parent class including _logger, _username, _password, and _currentRealm. 
+ * The username and password are what the user enters. the current Realm should be your 
+ * custom Realm you created before so you may have some logic to verify it is an instance of 
+ * the custom Realm and then Cast to the custom Realm. once Casted to the Realm then you I 
+ * call the authorization function and pass it the username and password from the LoginModule 
+ * and it returns a String[] of groups the user has available. These groups and can any names 
+ * you want and at the end call commitUserAuthentication(groups).
+ * 
+ * @link http://www.theserverside.com/news/thread.tss?thread_id=60905
+ * @link https://blogs.oracle.com/enterprisetechtips/entry/adding_authentication_mechanisms_to_the
+ * @link http://docs.oracle.com/cd/E26576_01/doc.312/e24930/securing-apps.htm#beacm
+ * @author sensos
+ */
+public class TokenTestLoginModule extends AppservPasswordLoginModule {
+    
+    @Override
+    protected void authenticateUser() throws LoginException {
+        
+        _logger.log(Level.INFO, "Authentication initialized.");
+        
+        String u = this._username;
+        String p = new String(this._passwd);
+        String c = this._currentRealm.getName();
+        
+        _logger.log(Level.INFO, "Username is: {0}", u);
+        _logger.log(Level.INFO, "Password is: {0}", p);
+        _logger.log(Level.INFO, "Realm is: {0}", c);
+        
+        String[] grpList = { "User" };
+       
+        commitUserAuthentication( grpList );
+    
+            _logger.log(Level.INFO, "Authentication completed.");
+    
+    }
+    
+}

@@ -11,21 +11,12 @@
         UserName     sensos-platform
         Password     sens0s
     </Resource>
-
-    <!-- 
-    <Resource id="SensosJmsResourceAdapter" type="ActiveMQResourceAdapter">
-        BrokerXmlConfig =  broker:(tcp://localhost:61616)
-        ServerUrl       =  tcp://localhost:61616
-        DataSource      =  Sensos-Queue
-    </Resource>
-   -->
    
     <Resource id="SensosResourceAdapter" type="ActiveMQResourceAdapter">
         BrokerXmlConfig =  broker:(tcp://localhost:61617,mqtt://localhost:1883,ws://localhost:61614)?useJmx=false&amp;persistent=true
         DataSource      =  Sensos-Queue
     </Resource>	
     
-
     <Resource id="Sensos-Queue" type="javax.sql.DataSource">
         JdbcDriver  = org.postgresql.Driver
         JdbcUrl     = jdbc:postgresql://localhost:5432/sensos-queue
@@ -37,16 +28,16 @@
         ResourceAdapter = SensosResourceAdapter
     </Resource>
 
-    <!--
-        <Container id="SensosJmsMdbContainer" ctype="MESSAGE">
-            ResourceAdapter = MyJmsResourceAdapter
-        </Container>
-    -->
-
     <Resource id="platformSOA" type="javax.jms.Queue"/>
     <Resource id="platformMediator" type="javax.jms.Queue"/>
     <Resource id="platformWeb" type="javax.jms.Queue"/>
     <Resource id="platformRest" type="javax.jms.Queue"/>
     <Resource id="platformDock" type="javax.jms.Queue"/>
     
+    <!--
+        <Container id="SensosJmsMdbContainer" ctype="MESSAGE">
+            ResourceAdapter = MyJmsResourceAdapter
+        </Container>
+    -->
+
 </tomee>

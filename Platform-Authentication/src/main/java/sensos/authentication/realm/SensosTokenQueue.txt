@@ -1,0 +1,219 @@
+/**
+ *  Sensos IoT Platform.
+ *  Copyright (C) 2015 sensos
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package sensos.authentication.realm;
+
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.jms.*;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+public class SensosTokenQueue implements Runnable {
+
+    private static Logger logger = Logger.getLogger(SensosTokenQueue.class.getName());
+    private static InitialContext jndi;
+    public static final String CF = "jms/AuthenticationQueueFactory";
+    public static final String CF_QUEUE = "jms/AuthenticationQueue";
+    private static QueueConnectionFactory connectionFactory;
+    private static QueueConnection connection;
+    private static QueueSession session;
+    private static Queue queue;
+    private static QueueReceiver receiver;
+    private static boolean isRunning = true;
+
+    public SensosTokenQueue() {
+
+    }
+
+    public boolean init() {
+
+        logger.log(Level.INFO, "Initializing {0}...", SensosTokenQueue.class.getName());
+
+        try {
+
+            jndi = new InitialContext();
+            connectionFactory = (QueueConnectionFactory) jndi.lookup(CF);
+            queue = (Queue) jndi.lookup(CF_QUEUE);
+
+            connection = connectionFactory.createQueueConnection();
+            session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+            receiver = session.createReceiver(queue);
+
+            connection.start();
+
+            isInitialized = true;
+
+        } catch (NamingException ex) {
+            logger.log(Level.WARNING, "{0} is not ready... {1}", new Object[]{SensosTokenQueue.class.getName(), ex.getMessage()});
+        } catch (JMSException ex) {
+            logger.log(Level.WARNING, "{0} is not ready... {1}", new Object[]{SensosTokenQueue.class.getName(), ex.getMessage()});
+        } catch (Exception ex) {
+            logger.log(Level.WARNING, "{0} is not ready... {1}", new Object[]{SensosTokenQueue.class.getName(), ex.getMessage()});
+        }
+
+        return isInitialized;
+
+    }
+
+    public void destroy() {
+
+        logger.log(Level.INFO, "Closing {0}...", SensosTokenQueue.class.getName());
+
+        try {
+
+            receiver.close();
+            session.close();
+            connection.close();
+
+        } catch (JMSException ex) {
+
+            Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
+
+    @Override
+    public void finalize() {
+
+        destroy();
+
+        isRunning = false;
+        isInitialized = false;
+
+    }
+
+    /**
+     *
+     * @param message
+     */
+    //@Override
+    public void onMessage(Message message) {
+
+        Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Received Message.");
+
+        if (!(message instanceof MapMessage)) {
+            return;
+        }
+
+        Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Parsing message...");
+
+        MapMessage mapMessage = (MapMessage) message;
+
+        try {
+
+            if (mapMessage == null) {
+                return;
+            }
+            if (mapMessage.getString("notifyclose") != null) {
+
+                Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Restarting authentication services...");
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                destroy();
+                init();
+
+            }
+            if (mapMessage.getString("username") == null) {
+                return;
+            }
+            if (mapMessage.getString("token") == null) {
+                return;
+            }
+            if (mapMessage.getString("created") == null) {
+                return;
+            }
+
+            SensosTokenMessage m = new SensosTokenMessage(mapMessage.getString("username"), mapMessage.getString("token"), new Date(mapMessage.getLong("created")));
+
+            SensosTokenManager.putToken(m);
+
+            Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Parsing message completed.");
+
+            Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Executing Acknowledge for consumer.");
+
+            mapMessage.acknowledge();
+
+        } catch (JMSException e) {
+
+            Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, "Error occured while receiving authentication message.");
+
+            try {
+                session.recover();
+            } catch (JMSException ex) {
+                Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+
+    /**
+     *
+     * @return
+     */
+    boolean isInitialized() {
+        return isInitialized;
+    }
+    boolean isInitialized;
+
+    @Override
+    public void run() {
+
+        Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Starting...{0}", SensosTokenQueue.class.getName());
+        
+        while (isRunning) {
+
+            //
+            // Wait till the 
+            //
+            while (!isInitialized) {
+                init();
+                
+                Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Is not initialized.");
+                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+
+            Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.INFO, "Receiving...{0}", SensosTokenQueue.class.getName());
+            
+            Message m = null;
+            
+            try {
+                m = receiver.receive();
+                onMessage(m);
+            } catch (JMSException ex) {
+                Logger.getLogger(SensosTokenQueue.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+    
+}

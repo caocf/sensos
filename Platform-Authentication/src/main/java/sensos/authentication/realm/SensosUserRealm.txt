@@ -1,0 +1,266 @@
+/**
+ *  Sensos IoT Platform.
+ *  Copyright (C) 2015 sensos
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package sensos.authentication.realm;
+
+import com.sun.enterprise.security.auth.realm.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sensos.authentication.dal.db.DALDBFactory;
+import sensos.authentication.dal.db.DAODBAuthentication;
+import sensos.authentication.user.normal.UserAuthenticator;
+import sensos.authentication.user.normal.UserPasswordAuthenticatorException;
+
+/**
+ * Realm: A collection of users and groups that are controlled by the same authentication policy.
+ * 
+ * 
+ * 
+ * Now that you have the dependency that you need you can create a new class that 
+ * extends com.sun.appserv.security.AppservRealm. Override the init, getGroupNames, getAuthType. 
+ * The init method should set up the webservice port needed to make a call. 
+ * I included an authorization function that takes a username and password and calls the login 
+ * function or throws a LoginException if it fails.
+ * 
+ * @link http://docs.oracle.com/cd/E18930_01/html/821-2418/beabo.html#beabs
+ * @link http://www.theserverside.com/news/thread.tss?thread_id=60905
+ * @link http://docs.oracle.com/javaee/1.4/tutorial/doc/Security3.html
+ * 
+ * @see SensosDeviceRealm
+ * 
+ * @author sensos
+ */
+public class SensosUserRealm extends com.sun.appserv.security.AppservRealm {
+
+   //TODO: Servicelocator should deduce the daoFactory value based on server-configuration
+    private static DALDBFactory daoFactory;
+    private static DAODBAuthentication daoAuthentication;
+    private static UserAuthenticator userAuthenticator;
+    private final String AUTH_TYPE = "userkeysecurity";
+    private final String GROUP_USER = "User";
+    
+    /**
+     * Index all groups here, separate with a space character
+     */
+    private final String GROUPS = GROUP_USER + " ";
+
+    private final String JAAS_CONTEXT = "jaas-context";
+    
+    /*
+    * This method is invoked during server startup when the realm is initially loaded. 
+    * The props argument contains the properties defined for this realm. 
+    * The realm can do any initialization it needs in this method. 
+    * 
+    * If the method returns without throwing an exception, the GlassFish Server 
+    * assumes that the realm is ready to service authentication requests. 
+    * If an exception is thrown, the realm is disabled.
+    */
+    @Override
+    protected void init(Properties props) throws BadRealmException, NoSuchRealmException {
+
+        super.init(props);
+
+        _logger.log(Level.INFO, "Invoking Init...");
+
+        File f = new File("test");
+        try {
+            _logger.log(Level.INFO, "Working directory is... {0}", f.getCanonicalPath());
+        } catch (IOException ex) {
+            Logger.getLogger(SensosUserRealm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Set<Object> _keys = props.keySet();
+
+        for (Object o : _keys) {
+            _logger.log(Level.INFO, "Property: {0}={1}", new Object[]{o.toString(), props.getProperty(o.toString())});
+        }
+
+            daoFactory = new DALDBFactory( "platform-auth" );
+            daoAuthentication = daoFactory.getDAOAuthentication();
+            userAuthenticator = new UserAuthenticator(daoAuthentication);        
+        
+        //}
+        
+        String jaasCtx = props.getProperty( JAAS_CONTEXT );
+        
+        if(jaasCtx == null)
+            throw new BadRealmException("jaas-context has not been correctly defined");
+        else
+            this.setProperty(JAAS_CONTEXT, jaasCtx);
+
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    protected DALDBFactory getDAOFactory() {
+        return daoFactory;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String getAuthType() {
+
+        _logger.log(Level.INFO, "Invoking getAuthType...");
+
+        return AUTH_TYPE;
+
+    }
+    
+    @Override
+    public Enumeration getUserNames() throws BadRealmException {
+
+        _logger.log(Level.INFO, "Getting all user names...");
+
+        //TODO: is this actually needed..
+
+        return super.getUserNames();
+
+    }
+    
+    /**
+     * Get user by Name. The User-object, is JAAS-context specific object.
+     *
+     * @param name
+     * @return
+     * @throws NoSuchUserException
+     * @throws BadRealmException
+     */
+    @Override
+    public User getUser(String name) throws NoSuchUserException, BadRealmException {
+
+        _logger.log(Level.INFO, "Getting users...");
+        _logger.log(Level.INFO, "Incoming parameter is: {0}", name);
+
+        return super.getUser(name);
+        //TODO: to be built
+    }
+    
+    /**
+     * Getting group names from this realm.
+     *
+     * @param s
+     * @return
+     * @throws InvalidOperationException
+     * @throws NoSuchUserException
+     */
+    @Override
+    public Enumeration getGroupNames(String s) throws InvalidOperationException, NoSuchUserException {
+
+        //TODO: Is the Device enough?
+
+        _logger.log(Level.INFO, "Getting groupnames...");
+        _logger.log(Level.INFO, "Incoming parameter is: {0}", s);
+
+        StringTokenizer st = new StringTokenizer(GROUPS);
+
+        return st;
+
+    }
+    
+    /**
+     * Refreshes the realm data so that new users/groups are visible.
+     *
+     * The new instance is installed in the Realm registry so future
+     * Realm.getInstance() calls will obtain the new data. Any existing
+     * references to this instance (e.g. in active LoginModule sessions) are
+     * unaffected.
+     *
+     * @exception BadRealmException if realm data structures are bad
+     *
+     */
+    @Override
+    public void refresh() throws BadRealmException {
+
+        _logger.fine("Reloading realm data...");
+
+        /*
+         * Example taken from the FileRealm: FileRealm newRealm = new
+         * FileRealm(); try { newRealm.init(getProperties());
+         * Realm.updateInstance(newRealm, this.getName()); } catch (Exception
+         * JavaDoc) { throw new BadRealmException(e.toString()); }
+         */
+
+    } 
+    
+    /**
+     * Authenticates a user.
+     *
+     * <P>This method is invoked by the DeviceLoginModule in order to
+     * authenticate a device in a DeviceRealm.
+     *
+     * @param user Name of user to authenticate.
+     * @param password Password provided by client. @returns Array of group
+     * names the user belongs to, or null if authentication fails.
+     * @throws LoginException If there are errors during authentication.
+     *
+     */
+    public String authenticate(String user, String password) {
+
+        if(userAuthenticator==null){
+            throw new IllegalStateException(UserAuthenticator.class.getName() + " is not correctly initialized. Check the database connection.");
+        }
+        
+        if (user == null) {
+            throw new IllegalStateException("Incoming user cannot be null");
+        }
+        if (password == null) {
+            throw new IllegalStateException("Incoming password cannot be null");
+        }
+
+        _logger.log(Level.INFO, "Authenticating... ");
+        _logger.log(Level.INFO, "Incoming user is: {0}", user);
+        _logger.log(Level.INFO, "Password exists.. {0}", password != null ? true : false);
+
+        //Execute authentication...
+        boolean ok = false;
+
+        try {
+            ok = userAuthenticator.authenticate(user, password);
+        } catch (UserPasswordAuthenticatorException ex) {
+            _logger.log(Level.SEVERE, null, ex);
+        }
+
+        //establish session and generate response
+        if (ok) {
+            return GROUP_USER;
+        } else {
+            return null;
+        }
+
+    }  
+    
+    @Override
+    protected void finalize() throws Throwable {
+       
+        daoFactory = null
+                ;
+        super.finalize();
+        
+    }
+    
+}

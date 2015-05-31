@@ -1,0 +1,111 @@
+/**
+ *  Sensos IoT Platform.
+ *  Copyright (C) 2015 sensos
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package sensos.authentication.user.normal;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import javax.security.auth.Subject;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.login.LoginException;
+import javax.security.auth.spi.LoginModule;
+import sensos.authentication.realm.SensosTokenRealm;
+
+/**
+ * Authenticates users.
+ *
+ * Next create a second class that extends
+ * com.sun.appserv.security.AppservPasswordLoginModule. Override the
+ * authenticateUser method. There are a few protected fields that are useful
+ * from this parent class including _logger, _username, _password, and
+ * _currentRealm. The username and password are what the user enters. the
+ * current Realm should be your custom Realm you created before so you may have
+ * some logic to verify it is an instance of the custom Realm and then Cast to
+ * the custom Realm. once Casted to the Realm then you I call the authorization
+ * function and pass it the username and password from the LoginModule and it
+ * returns a String[] of groups the user has available. These groups and can any
+ * names you want and at the end call commitUserAuthentication(groups).
+ *
+ * @link http://www.theserverside.com/news/thread.tss?thread_id=60905
+ * @link https://blogs.oracle.com/enterprisetechtips/entry/adding_authentication_mechanisms_to_the
+ * @link http://docs.oracle.com/cd/E26576_01/doc.312/e24930/securing-apps.htm#beacm
+ *
+ * @author sensos
+ */
+public class TokenLoginModule implements LoginModule {
+
+    /*
+    
+    @Override
+    protected void authenticateUser() throws LoginException {
+
+        _logger.log(Level.INFO, "Authentication initialized.");
+
+        SensosTokenRealm currentRealm = (SensosTokenRealm) _currentRealm;
+
+        String res = currentRealm.authenticate(_username, new String(_passwd));
+
+        if (res != null) {
+
+            // For the application developer, JAAS is a standard library that provides:a representation of identity (Principal) and a set of credentials (Subject)
+            // Principal: An entity that can be authenticated by an authentication protocol in a security service that is deployed in an enterprise. A principal is identified by using a principal name and authenticated by using authentication data.
+            String[] ua = new String[]{"User"};
+
+            _subject.getPrincipals().add(new PrincipalImpl("Basic"));
+            _subject.getPrincipals().add(new PrincipalImpl("HomePlus"));
+            _subject.getPrincipals().add(new PrincipalImpl("FunPlus"));
+            _subject.getPrincipals().add(new PrincipalImpl("ProfiPlus"));
+
+            //TODO: Get other principals from the Billing system.
+            
+            commitUserAuthentication(ua);
+
+        }
+
+        _logger.log(Level.INFO, "Authentication completed.");
+
+    } */
+
+    @Override
+    public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState, Map<String, ?> options) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean login() throws LoginException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean commit() throws LoginException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean abort() throws LoginException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean logout() throws LoginException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

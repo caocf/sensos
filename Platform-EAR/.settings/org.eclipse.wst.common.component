@@ -8,25 +8,10 @@
         <dependent-module archiveName="Platform-Business-Domain-Model-1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/Platform-Business-Domain-Model/Platform-Business-Domain-Model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jackson-databind-2.5.0-rc1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.5.0-rc1/jackson-databind-2.5.0-rc1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jackson-annotations-2.5.0-rc1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.5.0-rc1/jackson-annotations-2.5.0-rc1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="jackson-core-2.5.0-rc1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-core/2.5.0-rc1/jackson-core-2.5.0-rc1.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="Platform-Backend-Dal-1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/Platform-Backend-Dal/Platform-Backend-Dal">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Platform-Authentication-1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/Platform-Authentication/Platform-Authentication">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="postgresql-9.3-1102-jdbc41.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/postgresql/postgresql/9.3-1102-jdbc41/postgresql-9.3-1102-jdbc41.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="Platform-Authentication-BDM-1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/Platform-Authentication-BDM/Platform-Authentication-BDM">
+        <dependent-module archiveName="Platform-Authentication-BDM-1.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/fi/sensos/Platform-Authentication-BDM/1.0-SNAPSHOT/Platform-Authentication-BDM-1.0-SNAPSHOT.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="jetty-server-7.6.9.v20130131.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/eclipse/jetty/jetty-server/7.6.9.v20130131/jetty-server-7.6.9.v20130131.jar">
