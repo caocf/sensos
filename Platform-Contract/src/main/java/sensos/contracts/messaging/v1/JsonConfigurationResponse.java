@@ -17,13 +17,11 @@
  */
 package sensos.contracts.messaging.v1;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import sensos.contracts.messaging.PayloadResponse;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
@@ -31,7 +29,11 @@ import sensos.contracts.messaging.PayloadResponse;
  */
 public class JsonConfigurationResponse implements Serializable, PayloadResponse {
     
-    JsonConfigurationResponseElement response;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7629188091972247620L;
+	JsonConfigurationResponseElement response;
     
     public JsonConfigurationResponse() {
         

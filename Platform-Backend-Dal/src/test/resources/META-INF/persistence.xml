@@ -2,6 +2,7 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="platform-test" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        
         <class>sensos.bo.app.Application</class>
         <class>sensos.bo.auth.PrivateAccessKey</class>
         <class>sensos.bo.auth.PublicAccessKey</class>
@@ -19,6 +20,7 @@
         <class>sensos.bo.user.PlatformUser</class>
         <class>sensos.bo.user.PlatformUserAttribute</class>
         <class>sensos.bo.mediator.BillableUnit</class>
+        
         <properties>
         
             <!-- Settings for postgres

@@ -27,8 +27,12 @@ import sensos.contracts.messaging.PayloadRequest;
  */
 public class JsonPingRequest implements Serializable, PayloadRequest {
 
-    private static final float version = 1.0f;
-    JsonPingRequestElement request;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2482639297975090144L;
+	
+	JsonPingRequestElement request;
 
     @JsonProperty("Request")
     public JsonPingRequestElement getRequest() {

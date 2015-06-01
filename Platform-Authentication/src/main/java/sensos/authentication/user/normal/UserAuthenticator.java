@@ -50,8 +50,7 @@ public class UserAuthenticator {
 	 * @return
 	 * @throws UserPasswordAuthenticatorException
 	 */
-	public boolean authenticate(String username, String password)
-			throws UserPasswordAuthenticatorException {
+	public boolean authenticate(String username, String password) throws UserPasswordAuthenticatorException {
 
 		if (username == null) {
 			throw new UserPasswordAuthenticatorException("No username defined");
@@ -60,8 +59,6 @@ public class UserAuthenticator {
 		if (password == null) {
 			throw new UserPasswordAuthenticatorException("No password defined");
 		}
-
-		boolean isAuthenticated = false;
 
 		try {
 			password = passwordEncoder.encode(password);

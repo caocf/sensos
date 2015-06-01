@@ -26,7 +26,12 @@ import java.io.Serializable;
  */
 public class JsonRegisterResponseElement implements Serializable {
 
-    String method;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6923190033810070451L;
+	
+	String method;
     String status;
     String statusCode;
     String statusMessage;

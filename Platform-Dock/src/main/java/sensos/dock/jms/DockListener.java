@@ -77,7 +77,6 @@ public class DockListener implements MessageListener {
      * @throws Throwable 
      */
     @Override
-    @SuppressWarnings("FinalizeDeclaration")
     protected void finalize() throws Throwable {
 
         super.finalize();

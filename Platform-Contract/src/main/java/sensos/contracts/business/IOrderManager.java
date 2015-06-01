@@ -22,7 +22,6 @@ import javax.ejb.Remote;
 
 import sensos.bo.om.Customer;
 import sensos.bo.om.CustomerOrder;
-import sensos.bo.om.CustomerOrderLineItem;
 import sensos.bo.om.CustomerOrderProductLineItem;
 
 @Remote

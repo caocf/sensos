@@ -35,7 +35,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class BillableUnit implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2535740328973648051L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 

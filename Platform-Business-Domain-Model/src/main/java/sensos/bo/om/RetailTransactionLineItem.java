@@ -34,6 +34,11 @@ public class RetailTransactionLineItem extends SaleReturnLineItem implements
 		Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2955613826667358728L;
+
+	/**
 	 * RetailTransactionLineItemSequenceNumber (PK) The sequence number of line
 	 * item within the context of this RetailTransaction. IC_LN_ITM LineNumber
 	 * smallint

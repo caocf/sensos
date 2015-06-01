@@ -44,8 +44,11 @@ public abstract class DAODB {
         
         em = emFactory.createEntityManager();
         
-        if(emFactory == null)
-            throw new IllegalStateException("emFactory is null");
+        if(em == null) {
+         
+        	throw new IllegalStateException("emFactory is null");
+            
+        }
         
     }
     

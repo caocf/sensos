@@ -38,6 +38,11 @@ import java.util.Set;
 public class Customer implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7658060259746310155L;
+
+	/**
 	 * (PK) A unique system assigned identifier for a person or organization
 	 * that purchases a product or service from the retailer. ID_CT Identity
 	 * integer

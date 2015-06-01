@@ -19,7 +19,6 @@ package sensos.business.manager;
 
 import java.util.UUID;
 
-import javax.ejb.DependsOn;
 import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;

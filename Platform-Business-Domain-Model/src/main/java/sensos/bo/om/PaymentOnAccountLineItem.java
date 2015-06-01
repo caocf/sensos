@@ -32,6 +32,11 @@ package sensos.bo.om;
  */
 public class PaymentOnAccountLineItem extends RetailTransactionLineItem {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8413458339222684821L;
+
 	public PaymentOnAccountLineItem(String transactionID,
 			int retailTransactionLineItemSequenceNumber,
 			CustomerOrderLineItem customerOrderLineItem) {

@@ -29,6 +29,11 @@ package sensos.bo.om;
  */
 public class TaxLineItem extends RetailTransactionLineItem {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1170587335842174342L;
+
 	public TaxLineItem(String transactionID,
 			int retailTransactionLineItemSequenceNumber,
 			CustomerOrderLineItem customerOrderLineItem) {

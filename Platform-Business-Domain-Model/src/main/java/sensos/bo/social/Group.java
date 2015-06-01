@@ -531,7 +531,7 @@ public class Group implements Serializable {
 	 */
   public void addField(Field field) {
     if (fields == null) {
-      fields = new LinkedList();
+      fields = new LinkedList<Field>();
     }
     fields.add(field);
   }

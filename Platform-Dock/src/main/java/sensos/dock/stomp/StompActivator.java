@@ -98,6 +98,7 @@ public class StompActivator {
 		return rc;
 	}
 
+	@SuppressWarnings("unused")
 	private static String arg(String[] args, int index, String defaultValue) {
 		if (index < args.length)
 			return args[index];

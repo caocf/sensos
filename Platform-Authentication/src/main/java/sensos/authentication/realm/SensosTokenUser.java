@@ -28,8 +28,7 @@ import java.util.*;
 public class SensosTokenUser implements Principal {
 	private static final String GROUP_KEY = "Groups"; // not needed
 	private String[] groups;
-	private String realm;
-	private Hashtable attributes;
+	private Hashtable<String, String[]> attributes;
 
 	private byte[] salt;
 	private byte[] hash;
@@ -40,7 +39,7 @@ public class SensosTokenUser implements Principal {
 	 */
 	public SensosTokenUser(String name) {
 		// super(name);
-		attributes = new Hashtable(1); // not really needed
+		attributes = new Hashtable<String, String[]>(1); // not really needed
 	}
 
 	/**
@@ -62,11 +61,10 @@ public class SensosTokenUser implements Principal {
 			byte[] salt, byte[] hash) {
 		// super(name);
 		this.groups = groups;
-		this.realm = realm;
 		this.hash = hash;
 		this.salt = salt;
 
-		attributes = new Hashtable(1); // not really needed
+		attributes = new Hashtable<String, String[]>(1); // not really needed
 		attributes.put(GROUP_KEY, groups);
 	}
 
@@ -128,7 +126,7 @@ public class SensosTokenUser implements Principal {
 	 * Set group membership.
 	 *
 	 */
-	public void setGroups(Vector grp) {
+	public void setGroups(Vector<?> grp) {
 		String[] g = new String[grp.size()];
 		grp.toArray(g);
 		this.groups = g;
@@ -160,7 +158,7 @@ public class SensosTokenUser implements Principal {
 	 * <P>
 	 * Not really needed.
 	 */
-	public Enumeration getAttributeNames() {
+	public Enumeration<String> getAttributeNames() {
 		return attributes.keys();
 	}
 

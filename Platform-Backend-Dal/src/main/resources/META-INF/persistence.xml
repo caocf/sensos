@@ -4,6 +4,7 @@
     <persistence-unit name="platform" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <jta-data-source>Sensos-Platform</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
         <properties>
             <!-- Postgres

@@ -31,10 +31,13 @@ import sensos.contracts.messaging.PayloadRequest;
 @JsonSerialize(include = Inclusion.NON_EMPTY)
 public class JsonRegisterRequest implements Serializable, PayloadRequest {
 
-    public JsonRegisterRequest() {
-    }
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3526231264642955653L;
 
-    private static final float version = 1.0f;
+	public JsonRegisterRequest() { }
+
     JsonRegisterRequestElement request;
     String remoteAddr;
 

@@ -28,8 +28,6 @@ import java.security.spec.RSAPrivateKeySpec;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ejb.Local;
-import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
 import sensos.authentication.bo.PrivateAccessKey;

@@ -28,6 +28,11 @@ package sensos.authentication.device;
  */
 public class DeviceAuthenticatorException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4768426473276864791L;
+
 	public DeviceAuthenticatorException() {
 		// TODO: Design Exception class
 	}

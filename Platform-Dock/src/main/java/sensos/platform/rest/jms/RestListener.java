@@ -85,7 +85,6 @@ public class RestListener implements MessageListener {
      * @throws Throwable
      */
     @Override
-    @SuppressWarnings("FinalizeDeclaration")
     protected void finalize() throws Throwable {
 
         super.finalize();

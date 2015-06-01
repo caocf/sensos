@@ -25,7 +25,12 @@ import java.io.Serializable;
  */
 public class JsonPingRequestElement implements Serializable {
 
-    String method = "ping";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3379029841594086091L;
+	
+	String method = "ping";
 
     public JsonPingRequestElement() {
     }

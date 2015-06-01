@@ -24,6 +24,11 @@ package sensos.authentication.user.normal;
  */
 public class UserPasswordAuthenticatorException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9076666550096495777L;
+
 	public UserPasswordAuthenticatorException() {
 		// TODO: Design Exception class
 	}

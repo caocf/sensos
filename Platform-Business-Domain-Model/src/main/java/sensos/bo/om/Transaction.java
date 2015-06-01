@@ -32,6 +32,11 @@ import java.sql.Date;
 public class Transaction implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2649173487200722019L;
+
+	/**
 	 * SessionStartTransactionID (FK) A universally unique identifier (UUID) for
 	 * the Transaction. This may be assembled from alternate key members.
 	 * ID_TRN_SSN_SRT IdentityUUID char(32) Session (CO_SSN)

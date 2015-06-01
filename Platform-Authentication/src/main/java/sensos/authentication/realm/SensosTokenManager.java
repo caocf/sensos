@@ -34,7 +34,6 @@ public class SensosTokenManager implements Runnable {
 	private static HashMap<String, SensosTokenMessage> tokenMap = new HashMap<>();
 
 	@Override
-	@SuppressWarnings("SleepWhileInLoop")
 	public void run() {
 
 		while (true) {

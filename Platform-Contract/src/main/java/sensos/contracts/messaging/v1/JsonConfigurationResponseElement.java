@@ -28,7 +28,12 @@ import java.util.List;
  */
 public class JsonConfigurationResponseElement implements Serializable {
 
-    public JsonConfigurationResponseElement() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2952389959190278148L;
+
+	public JsonConfigurationResponseElement() {
     }
 
     String status;

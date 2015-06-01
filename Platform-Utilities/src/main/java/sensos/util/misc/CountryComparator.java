@@ -25,7 +25,8 @@ import java.util.Comparator;
  * @author sensos
  */
 class CountryComparator implements Comparator<Country> {
-  private Comparator comparator;
+	
+  private Comparator<Object> comparator;
 
   CountryComparator() {
     comparator = Collator.getInstance();
@@ -34,4 +35,5 @@ class CountryComparator implements Comparator<Country> {
   public int compare(Country o1, Country o2) {
     return comparator.compare(o1.name, o2.name);
   }
+  
 }

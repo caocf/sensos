@@ -29,7 +29,11 @@ import java.util.List;
  */
 public class JsonMessageRequestElement implements Serializable {
 
-    String method;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1510854931674044412L;
+	String method;
     String messageId;
     String timestamp;
     String requireAck;

@@ -17,19 +17,18 @@
  */
 package sensos.business.manager;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.ejb.embeddable.EJBContainer;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import sensos.bo.om.Customer;
 import sensos.bo.om.RetailTransaction;
 import sensos.bo.om.RetailTransactionLineItem;

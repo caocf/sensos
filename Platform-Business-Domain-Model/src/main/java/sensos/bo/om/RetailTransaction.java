@@ -33,6 +33,11 @@ import java.util.Set;
  */
 public class RetailTransaction extends Transaction implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5315357790759696985L;
+
 	public RetailTransaction(String transactionID) {
 		super(transactionID);
 

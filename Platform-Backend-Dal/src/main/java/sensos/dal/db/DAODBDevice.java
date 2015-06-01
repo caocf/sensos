@@ -18,9 +18,9 @@
 package sensos.dal.db;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.persistence.EntityManagerFactory;
+
 import sensos.authentication.bo.PublicAccessKey;
 import sensos.bo.device.Device;
 import sensos.bo.user.PlatformUser;
@@ -32,8 +32,6 @@ import sensos.dal.DAODB;
  * @author sensos
  */
 public class DAODBDevice extends DAODB {
-
-    private Logger l = Logger.getLogger(this.getClass().getName());
 
     public DAODBDevice() { }
 

@@ -17,15 +17,18 @@
  */
 package sensos.business.manager;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.*;
+import javax.ejb.DependsOn;
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+
 import sensos.bo.device.Device;
 import sensos.bo.user.PlatformUser;
 import sensos.contracts.business.IUserManager;

@@ -21,7 +21,6 @@ import sensos.authentication.dal.db.DAODBAccessKey;
 import sensos.authentication.dal.db.DAODBAuthentication;
 import sensos.dal.DALDBFactory;
 import sensos.dal.DALDBFactoryType;
-import sensos.dal.DAODB;
 
 /**
  *

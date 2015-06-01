@@ -25,7 +25,12 @@ import java.io.Serializable;
  */
 public class JsonUnregisterResponseElement implements Serializable {
 
-    public JsonUnregisterResponseElement() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7329544891981565916L;
+
+	public JsonUnregisterResponseElement() {
     }
 
     String method = "unregister";

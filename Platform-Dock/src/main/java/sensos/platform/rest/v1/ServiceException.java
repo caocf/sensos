@@ -26,7 +26,12 @@ import javax.jms.JMSException;
  */
 public class ServiceException extends Exception {
 
-    public ServiceException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8455601246702817352L;
+
+	public ServiceException() {
     }
 
     public ServiceException(String message) {

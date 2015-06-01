@@ -74,7 +74,8 @@ public final class PasswordChecker {
      * @param s the String to check
      * @return true if s contains an upper case letter, false otherwise
      */
-    private static boolean containsUpperCaseLetter(String s) {
+    @SuppressWarnings("unused")
+	private static boolean containsUpperCaseLetter(String s) {
         boolean result = false;
         for (int i = 0; i < s.length(); i++) {
             if (Character.isUpperCase(s.charAt(i))) {
@@ -91,7 +92,8 @@ public final class PasswordChecker {
      * @param s the String to check
      * @return true if s contains a lower case letter, false otherwise
      */
-    private static boolean containsLowerCaseLetter(String s) {
+    @SuppressWarnings("unused")
+	private static boolean containsLowerCaseLetter(final String s) {
         boolean result = false;
         for (int i = 0; i < s.length(); i++) {
             if (Character.isLowerCase(s.charAt(i))) {
@@ -108,7 +110,8 @@ public final class PasswordChecker {
      * @param s the String to check
      * @return true if s contains a digit, false otherwise
      */
-    private static boolean containsDigits(String s) {
+    @SuppressWarnings("unused")
+	private static boolean containsDigits(String s) {
         boolean result = false;
         for (int i = 0; i < s.length(); i++) {
             if (Character.isDigit(s.charAt(i))) {

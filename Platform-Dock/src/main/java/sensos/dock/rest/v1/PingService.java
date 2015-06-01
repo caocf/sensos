@@ -39,7 +39,6 @@ import sensos.dock.rest.RequestReader;
 public class PingService implements PingServiceMBean  {
     
     protected Logger l = Logger.getLogger(this.getClass().getName());
-    private RequestReader r = new RequestReader();
     
     public PingService() { }
     

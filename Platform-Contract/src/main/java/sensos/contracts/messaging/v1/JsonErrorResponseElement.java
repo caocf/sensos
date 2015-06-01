@@ -25,7 +25,11 @@ import java.io.Serializable;
  */
 public class JsonErrorResponseElement implements Serializable {
 
-    String code;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4966414335444819489L;
+	String code;
     String message;
 
     public String getCode() {

@@ -19,6 +19,7 @@ package sensos.platform.listener;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
@@ -28,12 +29,12 @@ import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
-import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
 import sensos.contracts.jms.JmsConstants;
 import sensos.contracts.messaging.PlatformMessageRequest;
 import sensos.contracts.messaging.PlatformMessageResponse;
@@ -111,7 +112,6 @@ public class WebDispatcher {
     }
 
     @Override
-    @SuppressWarnings("FinalizeDeclaration")
     protected void finalize() throws Throwable {
 
         destroy();

@@ -30,9 +30,12 @@ import sensos.contracts.messaging.PayloadResponse;
 @JsonSerialize(include = Inclusion.NON_EMPTY)
 public class JsonPingResponse implements Serializable, PayloadResponse {
 
-    JsonPingResponseElement response;
-        
-    private static final float version = 1.0f;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5155621055489621749L;
+
+	JsonPingResponseElement response;
 
     public JsonPingResponse() {
         

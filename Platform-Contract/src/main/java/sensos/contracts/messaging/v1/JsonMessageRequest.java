@@ -27,7 +27,12 @@ import sensos.contracts.messaging.PayloadRequest;
  */
 public class JsonMessageRequest implements Serializable, PayloadRequest {
 
-    public JsonMessageRequest() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3865949560453172445L;
+
+	public JsonMessageRequest() {
     }
 
     private JsonAccessKeyElement accessKey;

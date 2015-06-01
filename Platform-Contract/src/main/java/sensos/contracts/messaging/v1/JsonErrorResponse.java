@@ -27,9 +27,12 @@ import sensos.contracts.messaging.PayloadResponse;
  */
 public class JsonErrorResponse implements Serializable, PayloadResponse {
 
-    JsonErrorResponseElement response;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9154707177744880701L;
 
-    private static final float version = 1.0f;
+	JsonErrorResponseElement response;
 
     public JsonErrorResponse() {
 

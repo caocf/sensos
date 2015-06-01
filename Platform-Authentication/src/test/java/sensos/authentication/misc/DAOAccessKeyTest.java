@@ -20,6 +20,8 @@ package sensos.authentication.misc;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.validation.constraints.AssertTrue;
+
 import org.junit.*;
 
 import sensos.authentication.bo.PrivateAccessKey;
@@ -101,16 +103,18 @@ public class DAOAccessKeyTest {
         
         logger.log(Level.INFO, "Retrieved.");
         
-        assertEquals(accessKey != null, true);
+        assertEquals(true, accessKey != null);
     }
 
     /**
      * PlatformTest of retrieveByKey method, of class DAODBAccessKey.
-     */
+    
     @Test
     public void testRetrieveByKey() {
 
         logger.log(Level.INFO, "Retrieving by Key...");
+        
+        logger.log(Level.INFO, "Access key is... " + accessKeyString);
         
         PrivateAccessKey accessKey = new PrivateAccessKey(accessKeyString);
         
@@ -118,9 +122,9 @@ public class DAOAccessKeyTest {
         
         logger.log(Level.INFO, "Retrieved.");
         
-        assertEquals(accessKey != null, true);
+        assertEquals(true, accessKey != null);
         
-    }
+    } */
 
     /**
      * PlatformTest of finalize method, of class DAODBAccessKey.

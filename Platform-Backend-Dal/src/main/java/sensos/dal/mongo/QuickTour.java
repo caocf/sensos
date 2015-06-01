@@ -15,16 +15,15 @@
  */
 package sensos.dal.mongo;
 
+import java.net.UnknownHostException;
+import java.util.Set;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import java.net.UnknownHostException;
-import java.util.List;
-import java.util.Set;
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * The tutorial from

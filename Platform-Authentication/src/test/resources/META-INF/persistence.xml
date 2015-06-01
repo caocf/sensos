@@ -3,8 +3,8 @@
     
     <persistence-unit name="platform-auth-test" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>sensos.bo.auth.PrivateAccessKey</class>
-        <class>sensos.bo.auth.PublicAccessKey</class>
+        <class>sensos.authentication.bo.PrivateAccessKey</class>
+        <class>sensos.authentication.bo.PublicAccessKey</class>
 
         <properties>
         

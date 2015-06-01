@@ -130,4 +130,12 @@ public class AESDeviceAuthenticator extends IDeviceAuthenticator {
 
 	}
 
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
 }

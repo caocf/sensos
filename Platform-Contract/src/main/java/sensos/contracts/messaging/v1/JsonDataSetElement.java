@@ -26,7 +26,11 @@ import java.io.Serializable;
  */
 public class JsonDataSetElement implements Serializable {
 
-    private String type;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9022208377231458884L;
+	private String type;
     private String encoding;
     private String data;
 

@@ -26,6 +26,11 @@ import java.util.Date;
  */
 public class SensosTokenMessage implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2746674971152844616L;
+	
 	Date created;
 	String username;
 	String token;

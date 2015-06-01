@@ -34,8 +34,8 @@ public class Logger {
      */
     public void log(HttpServletRequest request, HttpServletResponse response) {
 
-        Enumeration p = request.getParameterNames();
-        Enumeration a = request.getAttributeNames();
+        Enumeration<?> p = request.getParameterNames();
+        Enumeration<?> a = request.getAttributeNames();
 
         while (p.hasMoreElements()) {
             System.out.println("Parametername: " + (String) p.nextElement());

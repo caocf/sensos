@@ -37,6 +37,11 @@ import java.io.Serializable;
 public class SaleReturnLineItem implements Serializable {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3419818084818826431L;
+
+	/**
 	 * TransactionID (PK)(FK) A universally unique identifier (UUID) for the
 	 * Transaction. This may be assembled from alternate key members. ID_TRN
 	 * IdentityUUID char(32) RetailTransactionLineItem (TR_LTM_RTL_TRN)

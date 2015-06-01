@@ -16,42 +16,24 @@
  */
 package sensos.dock.test;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.tomee.embedded.EmbeddedTomEEContainer;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import javax.ejb.embeddable.EJBContainer;
-import javax.naming.Context;
-import javax.naming.NamingException;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.io.IOException;
-import java.net.URL;
-
 import javax.ejb.embeddable.EJBContainer;
-import org.apache.openejb.OpenEjbContainer;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
+import javax.naming.NamingException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.openejb.OpenEjbContainer;
 import org.apache.openejb.loader.IO;
+import org.apache.tomee.embedded.EmbeddedTomEEContainer;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MQTTest {
 
@@ -119,7 +101,8 @@ public class MQTTest {
      * @return
      * @throws IOException 
      */
-    private static File createWebApp() throws IOException {
+    @SuppressWarnings("unused")
+	private static File createWebApp() throws IOException {
         File file = new File(System.getProperty("java.io.tmpdir") + "/tomee-" + Math.random());
         if (!file.mkdirs() && !file.exists()) {
             throw new RuntimeException("can't create " + file.getAbsolutePath());

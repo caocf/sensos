@@ -19,29 +19,64 @@
 package sensos.authentication.dal.db;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import javax.persistence.EntityManagerFactory;
 
 import sensos.authentication.bo.PrivateAccessKey;
 import sensos.authentication.bo.PublicAccessKey;
 
-public class DAODBAccessKey {
+public class DAODBAccessKey extends DAODB {
 
-	public DAODBAccessKey(EntityManagerFactory factory) {
-		// TODO Auto-generated constructor stub
-	}
+    Logger logger = Logger.getLogger(DAODBAccessKey.class.getName());
+	
+    public DAODBAccessKey() {  }
 
+    public DAODBAccessKey(EntityManagerFactory _emFactory) {
+
+        super(_emFactory);
+
+    }
+	
 	public PrivateAccessKey retrieveById(PrivateAccessKey accessKey) {
-		// TODO Auto-generated method stub
-		return null;
+		
+        return em.find(PrivateAccessKey.class, accessKey.getId());
+		
 	}
 
 	public PrivateAccessKey retrieveByKey(PrivateAccessKey accessKey) {
-		// TODO Auto-generated method stub
+
+        try {
+
+        	accessKey = em.createNamedQuery("PrivateAccessKey.findByKey", PrivateAccessKey.class)
+                    .setParameter("accessKey", accessKey.getAccessKey())
+                    .getSingleResult();
+
+        } catch (Exception e) {
+        	
+        	e.printStackTrace();
+
+        }
+		
 		return null;
+		
 	}
 
+	/**
+	 * 
+	 * @param accessKey
+	 */
 	public void store(PrivateAccessKey accessKey) {
-		// TODO Auto-generated method stub
+
+        // Begin a new local transaction so that we can persist a new entity
+        em.getTransaction().begin();
+
+        //persist accessKey
+        em.persist(accessKey);
+
+        // Commit the transaction, which will cause the entity to be stored in the database
+        em.getTransaction().commit();
+		
 		
 	}
 
