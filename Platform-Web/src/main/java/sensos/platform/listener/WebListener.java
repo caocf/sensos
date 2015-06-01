@@ -59,7 +59,6 @@ public class WebListener implements MessageListener {
     }
 
     @Override
-    @SuppressWarnings("FinalizeDeclaration")
     protected void finalize() throws Throwable {
 
         super.finalize();

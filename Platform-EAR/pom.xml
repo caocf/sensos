@@ -74,8 +74,8 @@
 					<!-- Auto-synchronization -->
 
 					<synchronization>
-					<resourcesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/src/main/webapp</resourcesDir>
-					<binariesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/target</binariesDir>
+						<resourcesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/src/main/webapp</resourcesDir>
+						<binariesDir>/home/sensos/project/Sensos-Platform/Platform-Dock/target</binariesDir>
 						<extensions>
 							<extension>.class</extension>
 							<extension>.jsp</extension>
@@ -115,19 +115,18 @@
 
 			</plugin>
 
-			<!-- Use this if you are driving Tomcat from Eclipse 
-
-			<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
-				<version>2.10</version> <executions> <execution> <id>copy</id> <phase>package</phase> 
-				<goals> <goal>copy</goal> </goals> <configuration> <artifactItems> <artifactItem> 
-				<groupId>org.eclipse.paho</groupId> <artifactId>mqtt-client</artifactId> 
-				<version>0.4.0</version> </artifactItem> <artifactItem> <groupId>org.fusesource.mqtt-client</groupId> 
-				<artifactId>mqtt-client</artifactId> <version>1.10</version> </artifactItem> 
-				<artifactItem> <groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> 
-				<version>9.3-1102-jdbc41</version> </artifactItem> <artifactItem> <groupId>org.fusesource.stompjms</groupId> 
-				<artifactId>stompjms-client</artifactId> <version>1.19</version> </artifactItem> 
-				<artifactItem> <groupId>org.apache.activemq</groupId> <artifactId>activemq-all</artifactId> 
-				<version>5.10.0</version> </artifactItem> </artifactItems> <outputDirectory>/home/sensos/project/Sensos-Platform/ext/apache-tomee-plus-1.7.1/lib</outputDirectory> 
+			<!-- Use this if you are driving Tomcat from Eclipse <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-dependency-plugin</artifactId> <version>2.10</version> 
+				<executions> <execution> <id>copy</id> <phase>package</phase> <goals> <goal>copy</goal> 
+				</goals> <configuration> <artifactItems> <artifactItem> <groupId>org.eclipse.paho</groupId> 
+				<artifactId>mqtt-client</artifactId> <version>0.4.0</version> </artifactItem> 
+				<artifactItem> <groupId>org.fusesource.mqtt-client</groupId> <artifactId>mqtt-client</artifactId> 
+				<version>1.10</version> </artifactItem> <artifactItem> <groupId>org.postgresql</groupId> 
+				<artifactId>postgresql</artifactId> <version>9.3-1102-jdbc41</version> </artifactItem> 
+				<artifactItem> <groupId>org.fusesource.stompjms</groupId> <artifactId>stompjms-client</artifactId> 
+				<version>1.19</version> </artifactItem> <artifactItem> <groupId>org.apache.activemq</groupId> 
+				<artifactId>activemq-all</artifactId> <version>5.10.0</version> </artifactItem> 
+				</artifactItems> <outputDirectory>/home/sensos/project/Sensos-Platform/ext/apache-tomee-plus-1.7.1/lib</outputDirectory> 
 				</configuration> </execution> </executions> </plugin> -->
 
 		</plugins>

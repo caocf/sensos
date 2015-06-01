@@ -1,14 +1,15 @@
 <%@page import="sensos.platform.helper.NoaccessHelper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<jsp:include page="./shared_header.jsp" />    
-        No Access <br/>
+<jsp:include page="./shared_header.jsp" />
+No Access
+<br />
 
-        <%= NoaccessHelper.getAccessedResource(request)%>
+<%= NoaccessHelper.getAccessedResource(request)%>
 
-        <a href="/platform/web/auth">Sign in today!</a>
+<a href="/platform/web/auth">Sign in today!</a>
 
-<jsp:include page="./shared_footer.jsp" />  
+<jsp:include page="./shared_footer.jsp" />
 
 
 
@@ -119,8 +120,8 @@
 
 </div>-->
 
-<jsp:include page="./shared_footer.jsp" />        
+<jsp:include page="./shared_footer.jsp" />
 
 </body>
 
-</html>        
+</html>

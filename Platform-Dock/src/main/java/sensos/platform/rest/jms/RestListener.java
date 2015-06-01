@@ -42,8 +42,6 @@ public class RestListener implements MessageListener {
     @EJB
     private IUserManager userManager;
 
-    private RestLetterChannel letterChannel = new RestLetterChannel(60);
-
     private static Logger l = Logger.getLogger(RestListener.class.getName());
 
     //private AkkaFactory akkaFactory;

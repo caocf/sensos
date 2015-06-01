@@ -1,17 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <jsp:include page="../shared_header.jsp" />    
+<jsp:include page="../shared_header.jsp" />
 
-    <div id="content">
-        
-        Websocket application <br/>
-        
+<div id="content">
 
-    </div>
+	Websocket application <br />
 
-    <jsp:include page="../shared_footer.jsp" />        
+
+</div>
+
+<jsp:include page="../shared_footer.jsp" />
 
 </body>
 
-</html>        
+</html>

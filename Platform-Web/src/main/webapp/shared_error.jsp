@@ -3,14 +3,12 @@
 
 <html>
 
-    <jsp:include page="./shared_header.jsp" />    
+<jsp:include page="./shared_header.jsp" />
 
-    <div id="error">
+<div id="error"></div>
 
-    </div>
-
-    <jsp:include page="./shared_footer.jsp" />        
+<jsp:include page="./shared_footer.jsp" />
 
 </body>
 
-</html>        
+</html>

@@ -55,7 +55,6 @@ public class WebDispatcher {
    // private static Queue queue;
     private static QueueSession session;
     private static QueueSender sender;
-    private static boolean isClosed = false;
 
         @Resource(name = CF_QUEUE)
     private Queue queue;
@@ -71,7 +70,7 @@ public class WebDispatcher {
 
         try {
 
-            jndi = new InitialContext();
+            setJndi(new InitialContext());
 
             //connectionFactory = (QueueConnectionFactory) jndi.lookup(CF);
            // queue = (Queue) jndi.lookup(CF_QUEUE);
@@ -80,8 +79,6 @@ public class WebDispatcher {
             session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
             sender = session.createSender(queue);
             connection.start();
-
-            isClosed = false;
 
         } catch (NamingException | JMSException ex) {
             Logger.getLogger(WebDispatcher.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,8 +97,6 @@ public class WebDispatcher {
             sender.close();
             session.close();
             connection.close();
-
-            isClosed = true;
 
         } catch (JMSException ex) {
 
@@ -165,5 +160,13 @@ public class WebDispatcher {
         }
 
     }
+
+	public static InitialContext getJndi() {
+		return jndi;
+	}
+
+	public static void setJndi(InitialContext jndi) {
+		WebDispatcher.jndi = jndi;
+	}
     
 }
